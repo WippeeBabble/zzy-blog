@@ -72,6 +72,8 @@
               @focus="changePlaceholder_active"
               @blur="changePlaceholder($event, registerData.password)"
               :disabled="registering"
+
+              @keyup="codeDetect($event)"
             />
             <span
               class="seePsw iconfont icon-yincangbukejian"
@@ -459,6 +461,17 @@ const toLogin = () => {
 }
 
 // })
+// 密码验证
+
+const codeDetect = (e) =>{ 
+  let txtSubmit = e
+  let deteect = () =>{
+
+  }
+  console.log('txtSubmit',txtSubmit);
+}
+
+
 </script>
 <style scoped>
 .container {

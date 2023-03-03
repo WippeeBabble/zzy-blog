@@ -23,12 +23,20 @@ let data = computed(() => {
 
 // // 写一个addshow方法 把所有数据遍历一遍，都加上show属性
 const addShowFuc = (data) => {
+  // return data.map((item) => {
+  //   item.show = false
+  //   if (item.children) {
+  //     addShowFuc(item.children)
+  //   }
+
+  //   return item
+  // }
+
   return data.map((item) => {
-    item.show = false
-    if (item.children) {
+    if(item.children){
+      item.show = false
       addShowFuc(item.children)
     }
-
     return item
   }
   )
