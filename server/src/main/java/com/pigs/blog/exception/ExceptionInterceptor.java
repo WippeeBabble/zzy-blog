@@ -1,10 +1,13 @@
 package com.pigs.blog.exception;
 
 import com.pigs.blog.common.ResultResponse;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+
 
 @ControllerAdvice
 public class ExceptionInterceptor {
@@ -28,5 +31,11 @@ public class ExceptionInterceptor {
     @ResponseBody
     public ResultResponse doValidationException(MethodArgumentNotValidException e){
         return ResultResponse.fail(ErrorCodeEnum.PARAMETER_IS_ILLEGAL.getCode(),e.getBindingResult().getFieldError().getDefaultMessage());
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    @ResponseBody
+    public ResultResponse accessException(AccessDeniedException e){
+        return ResultResponse.fail(ErrorCodeEnum.ACCESS_DENIED.getCode(),ErrorCodeEnum.ACCESS_DENIED.getMsg());
     }
 }
