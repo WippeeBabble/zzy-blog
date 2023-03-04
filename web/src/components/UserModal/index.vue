@@ -73,7 +73,6 @@
               @blur="changePlaceholder($event, registerData.password)"
               :disabled="registering"
 
-              @keyup="codeDetect($event)"
             />
             <span
               class="seePsw iconfont icon-yincangbukejian"
@@ -205,10 +204,10 @@ let registering = ref(true)
 let logining = ref(false)
 // 绑定注册相关数据
 let registerData = reactive({
-  nick_name: "",
-  account: "",
-  password: "",
-  confirmPassword: "",
+  nick_name: "",//1
+  account: "",//1
+  password: "",//1
+  confirmPassword: "",//1
   github_url: "",
   github_id: 0,
   img_url: "", //头像
@@ -270,6 +269,21 @@ watch(key, async () => {
     sessionStorage.removeItem("status")
   }
 })
+
+// 监测 输入密码格式
+watch([()=>registerData.password,
+       ()=>registerData.nick_name,
+       ()=>registerData.account,
+       ()=>registerData.confirmPassword,
+], (newValue,oldValue)=>{
+  console.log(registerData.nick_name);
+  if(registerData.nick_name.length < 4 || registerData.nick_name.length > 16 ||/^[\u4e00-\u9fa5]+$/.test(registerData.nick_name)){
+    console.log('格式错误')
+    
+  }
+})
+
+
 onMounted(() => {
   console.log(route)
   console.log(router)
@@ -465,6 +479,7 @@ const toLogin = () => {
 
 const codeDetect = (e) =>{ 
   let txtSubmit = e
+  let text = document.getElementsByClassName('l')
   let deteect = () =>{
 
   }
