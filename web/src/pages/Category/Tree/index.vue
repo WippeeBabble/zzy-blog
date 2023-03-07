@@ -11,7 +11,7 @@
         @click.stop="item.show = !item.show ;" 
       >
         <p>
-        {{ item.group_name }} <span class="icon-arror iconfont" :class=" item.show ? 'trunDown':'trunLeft'"></span>
+        {{ item.group_name }} <span class="icon-arror iconfont" :class=" item.show ? 'trunDown':''"></span>
         </p>
         
         <!-- 使用递归组件 -->
